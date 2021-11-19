@@ -1,16 +1,18 @@
-//make prompt for player to pick input (rock, paper, scissors) and assign it to playerInput
 
-let playerInput = prompt("rock, paper, or scissors?");
+
+let playerInput = prompt("rock, paper, or scissors?") 
+    
+const items = ["rock","paper","scissors"];
 
 function computerPlay(items) {   
  return items[Math.floor(Math.random()*items.length)];         
 }
 
-const items = ["rock","paper","scissors"];
+
 let computerInput = computerPlay(items);
 
 
-let compare = function (playerInput, computerInput) {
+function compare(playerInput, computerInput) {
     if (playerInput === computerInput) {
         return "The result is a tie";
     }
@@ -43,17 +45,15 @@ let compare = function (playerInput, computerInput) {
     
 }
 
-  
+let playRound = compare(playerInput, computerInput);
+
+
+// declare a function that assigns +1 score point to winner
 
 
 
+// loop compare(playerInput, computerInput) to make it run 5 times. Best of 3 score wins
 
-
-
-//make function for a single round playRound(playerInput, computerInput). The arguments should be case insensitive.
-
-
-//playRound() should output a string declaring the outcome, like "You Lose! Paper beats Rock"
 
 
 
