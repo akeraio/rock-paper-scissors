@@ -1,15 +1,20 @@
 
 
-let playerInput = prompt("rock, paper, or scissors?") 
-    
-const items = ["rock","paper","scissors"];
-
 function computerPlay(items) {   
  return items[Math.floor(Math.random()*items.length)];         
 }
 
-
+const items = ["rock","paper","scissors"];
 let computerInput = computerPlay(items);
+let playerInput = prompt("rock, paper, or scissors?");
+let playRound = compare(playerInput, computerInput);
+
+
+if ((playerInput !== "rock") && (playerInput !== "paper") && (playerInput !== "scissors")) {
+    alert("Please pick a valid input")
+} else { 
+    alert((game()));
+}
 
 
 function compare(playerInput, computerInput) {
@@ -21,7 +26,7 @@ function compare(playerInput, computerInput) {
         if (computerInput === "paper") {
             return "You lost! Paper beats rock"
         } else if (computerInput === "scissors") { 
-             return "You won! Rock beats paper"
+             return "You won! Rock beats scissors"
         }
     }
     
@@ -45,14 +50,14 @@ function compare(playerInput, computerInput) {
     
 }
 
-let playRound = compare(playerInput, computerInput);
+
+function game() {
+    
+    return compare(playerInput, computerInput)
+
+}
 
 
-// declare a function that assigns +1 score point to winner
-
-
-
-// loop compare(playerInput, computerInput) to make it run 5 times. Best of 3 score wins
 
 
 
