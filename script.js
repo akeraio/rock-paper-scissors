@@ -15,41 +15,27 @@ function computerPlay(items) {
     return items[Math.floor(Math.random()*items.length)];         
 }
 
+function upperCaseFirst(string){
+    return string[0].toUpperCase() + string.slice(1);
+}
+
+
 function compare(playerInput, computerInput) {
-    if (playerInput.toLowerCase() === computerInput) {
-        return "The result is a tie";
-    }
-
-    if (playerInput.toLowerCase() === "rock") {
-        if (computerInput === "paper") {
-            computerScore++
-            return "You lost! Paper beats rock"
-        } else if (computerInput === "scissors") {
-             playerScore++
-             return "You won! Rock beats scissors"
-        }
-    }
-
-    if (playerInput.toLowerCase() === "paper") {
-        if (computerInput === "rock") {
-            playerScore++
-            return "You won! Paper beats rock"
-        } else if (computerInput === "scissors") {
-             computerScore++
-             return "You lost! Scissors beats paper"
-        }
-    }
-
-    if (playerInput.toLowerCase() === "scissors") {
-        if (computerInput === "rock") {
-            computerScore++
-            return "You lost! Rock beats scissors"
-        } else if (computerInput === "paper") {
-              playerScore++
-              return "You won! Scissors beat paper"
-        }
+    const playerIndex = items.indexOf(playerInput);
+    const computerIndex = items.indexOf(computerInput)
+    const matrix = [["D", "W", "L"],["L", "D", "W"],["W", "L", "D"]];
+    const result = matrix[playerIndex][computerIndex];
+    if (result === "W") {
+        playerScore++
+        return `You won! ${upperCaseFirst(playerInput)} beats ${computerInput}`;
+    } else if (result === "L") {
+        computerScore++
+        return `You lost! ${upperCaseFirst(computerInput)} beats ${playerInput}`;
+    } else {
+        return `It's a tie!`
     }
 }
+
 
 function game(playerInput, computerInput) {
     let result = compare(playerInput, computerInput);
@@ -61,20 +47,22 @@ function game(playerInput, computerInput) {
 function validateInput() {
     let playerInput = prompt("rock, paper, or scissors?");
 
-    while (
-        (playerInput.toLowerCase() !== "rock") && 
-        (playerInput.toLowerCase() !== "paper") && 
-        (playerInput.toLowerCase() !== "scissors")
-    ) {
+    while (!items.includes(playerInput.toLowerCase())) {
         alert("Please pick a valid input");
         playerInput = prompt("rock, paper, or scissors?");
-        
+       
     }
     return playerInput;
 }
 
-while (playerScore < 5 && computerScore <5) {
+while (playerScore < 5 && computerScore < 5) {
     let playerInput = validateInput();
     let computerInput = computerPlay(items);
     game(playerInput, computerInput);
+}
+
+if (playerScore > computerScore) {
+    alert("Congratulations, you won!");
+} else {
+    alert("You lost! Better luck next time.");
 }
